@@ -20,3 +20,5 @@ test-data.json
 examples/stubbing-spying__intercept/users5.json
 **/.parcel-cache
 examples/*/data.json
+**/cypress.env.json
+**/.env
