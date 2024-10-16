@@ -16,7 +16,7 @@ describe('Unhandled promises', () => {
       message: null,
     }
 
-    cy.on('uncaught:exception', (e, runnable, promise) => {
+    cy.on('uncaught exception', (e, runnable, promise) => {
       caught.message = e.message
 
       return false
