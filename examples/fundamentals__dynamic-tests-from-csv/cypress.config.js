@@ -15,14 +15,8 @@ module.exports = defineConfig({
     // `config` is the resolved Cypress config
     async setupNodeEvents (on, config) {
       // let"s load the CSV file
-      const filename = path.join(__dirname, 'cypress/plugins/users.csv')
-
-      console.log('loading file', filename)
-      const text = fs.readFileSync(filename, 'utf8')
-      const csv = await neatCSV(text)
-
-      console.log('loaded the users')
-      console.log(csv)
+      // TODO: We need to get data from users.csv and turn csv format into [{}]
+      // to work further with the tests
 
       // then set it inside the config object under the environment
       // which will make it available via Cypress.env("usersList")
