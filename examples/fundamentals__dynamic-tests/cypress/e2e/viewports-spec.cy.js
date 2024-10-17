@@ -8,16 +8,12 @@ describe('Viewports', () => {
     return false
   })
 
-  // run the same test against different viewport resolution
+  // TODO: Run the same test against different viewport resolution
   const sizes = ['iphone-6', 'ipad-2', [1024, 768]]
 
   sizes.forEach((size) => {
     it(`displays logo on ${size} screen`, () => {
-      if (Cypress._.isArray(size)) {
-        cy.viewport(size[0], size[1])
-      } else {
-        cy.viewport(size)
-      }
+      // Code here
 
       cy.visit('https://www.cypress.io')
       cy.get(logoSelector).should('be.visible')

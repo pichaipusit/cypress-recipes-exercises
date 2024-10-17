@@ -1,29 +1,28 @@
 /// <reference types="cypress" />
-describe('Subdomains', () => {
+describe("Subdomains", () => {
+  // TODO: Get the suitable selector for each url
   const urlToLogoSelector = {
     // logo selector at https://docs.cypress.io/
-    'https://docs.cypress.io': 'img[alt="Cypress Logo"]',
+    "https://docs.cypress.io": 'img[alt="Cypress Logo"]',
     // on the public static site, the logo is rendered within a labeled link
-    'https://www.cypress.io': 'a[aria-label="Cypress"]',
-  }
+    "https://www.cypress.io": 'a[aria-label="Cypress"]',
+  };
 
   // ignore errors from the site itself
-  Cypress.on('uncaught:exception', () => {
-    return false
-  })
+  Cypress.on("uncaught:exception", () => {
+    return false;
+  });
 
   // run the same test against different subdomain
-  const urls = Object.keys(urlToLogoSelector)
+  // TODO: Verify that the logo is displayed after navigating to the URL
+  const urls = Object.keys(urlToLogoSelector);
+  urls.map((url) => {
+    it(`${url} should display logo`, () => {
+      cy.visit(url);
 
-  urls.forEach((url) => {
-    it(`Should display logo on ${url}`, () => {
-      cy.visit(url)
+      const selector = urlToLogoSelector[url];
 
-      const selector = urlToLogoSelector[url]
-
-      expect(selector, `logo selector for ${url}`).to.be.a('string')
-
-      cy.get(selector).should('be.visible')
-    })
-  })
-})
+      cy.get(selector).should("be.visible");
+    });
+  });
+});
