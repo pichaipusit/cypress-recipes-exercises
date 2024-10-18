@@ -10,32 +10,36 @@
  *
  * @example cy.dataCy('greeting')
  */
-Cypress.Commands.add('dataCy', (value) => cy.get(`[data-cy=${value}]`))
+Cypress.Commands.add("dataCy", (value) => cy.get(`[data-cy=${value}]`));
 
-describe('finds', () => {
-  it('element using data-cy custom command', () => {
-    cy.visit('index.html')
+describe("finds", () => {
+  it("element using data-cy custom command", () => {
+    cy.visit("index.html");
     // use custom command we have defined above
-    cy.dataCy('greeting').should('be.visible')
-  })
 
-  it('element using h1', () => {
-    cy.visit('index.html')
+    // TODO: Add custom command and fix the error for this
+    cy("greeting").should();
+  });
+
+  it("element using h1", () => {
+    cy.visit("index.html");
     // sanity check that h1 element has "data-cy" attribute
     // with expected value
-    cy.get('h1')
-    .should('be.visible')
-    .and('have.attr', 'data-cy', 'greeting')
-  })
+    cy.get("h1")
+      .should("be.visible")
+      .and("have.attr", "data-cy", "greeting");
+  });
 
-  it('dynamically added element', () => {
-    cy.visit('index.html')
+  it("dynamically added element", () => {
+    cy.visit("index.html");
     // another custom command, this one comes from external module
     // load https://github.com/NoriSte/cypress-wait-until
     cy.waitUntil(() => {
       return cy
-      .window()
-      .then((win) => Boolean(win.document.querySelector('[data-cy=dynamic]')))
-    })
-  })
-})
+        .window()
+        .then((win) =>
+          Boolean(win.document.querySelector("[data-cy=dynamic]"))
+        );
+    });
+  });
+});
